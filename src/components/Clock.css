@@ -1,114 +1,121 @@
-.clock {
-    border: 2px solid black;
-    height: 500px;
-    width: 500px;
-    margin: auto;
-    border-radius: 50%;
-    position: relative;
-  }
-  
-.inner-pin {
+
+.clock-face{
+  position: relative;
+  height: 500px;
+  width: 500px;
+  border-radius: 50%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 90px;
+}
+
+.clock-pin{
   height: 20px;
   width: 20px;
-  border-radius: 50%;
+  background-color: black;
+  border: 1px solid white;
   position: absolute;
-  background-color: grey;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 10;
+  border-radius: 50%;
+  z-index: 1;
 }
 
-  
-  .hour {
-    position: absolute;
-    font-size: 40px;
-    color: black;
-    transform: translate(-50%, -50%);
-  }
-  
-  .twelve {
-    top: 5%;
-    left: 50%;
-  }
-  .one {
-    top: 15%;
-    left: 75%;
-  }
-  .two {
-    top: 30%;
-    left: 88%;
-  }
-  .three {
-    top: 50%;
-    left: 95%;
-  }
-  .four {
-    top: 70%;
-    left: 88%;
-  }
-  .five {
-    top: 85%;
-    left: 75%;
-  }
-  .six {
-    top: 93%;
-    left: 50%;
-  }
-  .seven {
-    top: 85%;
-    left: 25%;
-  }
-  .eight {
-    top: 70%;
-    left: 12%;
-  }
-  .nine {
-    top: 50%;
-    left: 5%;
-  }
-  .ten {
-    top: 30%;
-    left: 12%;
-  }
-  .eleven {
-    top: 15%;
-    left: 25%;
-  }
-  
-  .hour-hand {
-    background-color: black;
-    width: 10px;
-    height: 100px;
-    position: absolute;
-    left: 50%;
-    bottom: 50%;
-    transform-origin: bottom;
-    z-index: 5;
-    transition: transform 0.5s linear;
-  }
+.hour{
+  position:absolute;
+  font-size: 50px;
+  transform: translate(-50%, -50%);
+  color: black;
+}
 
-  .minute-hand {
-    background-color: black;
-    width: 10px;
-    height: 140px;
-    position: absolute;
-    left: 50%;
-    bottom: 50%;
-    transform-origin: bottom;
-    z-index: 6;
-    transition: transform 0.5s linear;
-  }
+.twelve{
+  left: 50%;
+  top: 30px;
+}
 
-  .second-hand {
-    background-color: black;
-    width: 1px;
-    height: 190px;
-    position: absolute;
-    left: 50%;
-    bottom: 50%;
-    transform-origin: bottom;
-    z-index: 6;
-  }
-  
-  
+.six{
+  bottom: -30px;
+  left: 50%;
+}
+
+.three{
+  right: 0;
+  top: 50%;
+}
+
+.nine{
+  left: 30px;
+  top: 50%;
+}
+
+.one{
+  left: 70%;
+  top: 60px;
+}
+
+.two{
+  left: 86%;
+  top: 130px;
+}
+
+.four{
+  left: 86%;
+  bottom: 60px;
+}
+
+.five{
+  left: 70%;
+  bottom: 0;
+}
+
+.seven{
+  bottom: 0;
+  left: 30%;
+}
+
+.eight{
+  bottom:70px;
+  left: 13%;
+}
+
+.ten{
+  left: 13%;
+  top: 30%;
+}
+
+.eleven{
+  left: 28%;
+  top: 13%;
+}
+
+.hour-hand{
+  position: absolute;
+  width: 130px;
+  height: 10px;
+  background-color: black;
+  left: 50%;
+  top: 50%;
+  transform-origin: 0% 50%;
+}
+
+.minute-hand{
+  position: absolute;
+  height: 6px;
+  width: 180px;
+  background-color: black;
+  left: 50%;
+  top: 50%;
+  transform-origin: 0% 50%;
+}
+
+.second-hand{
+  position: absolute;
+  height: 2px;
+  width: 200px;
+  background-color: red;
+  left: 50%;
+  top: 50%;
+  transform-origin: 0% 50%;
+}

@@ -1,39 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import "./Clock.css";
 
 const Clock = () => {
+  //useState hook to store the time
   const [time, setTime] = useState(new Date());
-  const [paused, setPause] = useState(false)
+  //useState hook to keep track if time is fetched from the local storage or not
+  const [isPaused, setIsPaused] = useState(false);
 
-
-
-  useEffect(()=>{
-    const saved = localStorage.getItem('saved-time');
-    if(saved){
-        setTime(new Date(saved));
-        setPause(true);
-    }
-  })
-
-  useEffect(() => {
-
-    if (paused) return;
-    const interval = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const saveTime = () =>{
-    localStorage.setItem("saved-time", time.toISOString());
-  }
-
-  const clearStorage = () =>{
-    localStorage.removeItem("saved-time");
-    setTime(new Date())
-  }
-
+  //constants to store the time and their corresponding degrees.
   const hour = time.getHours();
   const minute = time.getMinutes();
   const second = time.getSeconds();
@@ -42,11 +17,38 @@ const Clock = () => {
   const minuteDegree = minute * 6 + second * 0.1;
   const secondDegree = second * 6;
 
+  useEffect(()=>{
+    const localStorageTime = localStorage.getItem('saved-time');
+    if(localStorageTime){
+      setTime(new Date(localStorageTime));
+      setIsPaused(true)
+    }
+  },[])
+
+  //useEffect to run the code on mount and setInterval to run it once every second.
+  useEffect(() => {
+    if (isPaused) return;
+
+    const oneSecondInterval = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(oneSecondInterval); //preventing memory leakage and clearing the interval when not needed
+  }, [isPaused]);
+
+  const saveToLocalStorage = () => {
+    localStorage.setItem("saved-time", new Date().toISOString());
+    setIsPaused(true);
+  };
+
+  const clearLocalStorage = () => {
+    localStorage.removeItem("saved-time");
+    setIsPaused(false)
+  };
   return (
     <>
-      <div className="clock">
-        <div className="inner-pin"></div>
-        <div className="hour twelve">12</div>
+      <div className="clock-face">
+        <div className="clock-pin"></div>
         <div className="hour one">1</div>
         <div className="hour two">2</div>
         <div className="hour three">3</div>
@@ -58,31 +60,40 @@ const Clock = () => {
         <div className="hour nine">9</div>
         <div className="hour ten">10</div>
         <div className="hour eleven">11</div>
-
+        <div className="hour twelve">12</div>
         <div
           className="hour-hand"
-          style={{
-            transform: `rotate(${hourDegree}deg)`,
-          }}
+          style={{ transform: `rotate(${hourDegree - 90}deg)` }}
         ></div>
 
         <div
           className="minute-hand"
-          style={{
-            transform: `rotate(${minuteDegree}deg)`,
-          }}
+          style={{ transform: `rotate(${minuteDegree - 90}deg)` }}
         ></div>
 
         <div
           className="second-hand"
-          style={{
-            transform: `rotate(${secondDegree}deg)`,
-          }}
+          style={{ transform: `rotate(${secondDegree - 90}deg)` }}
         ></div>
       </div>
 
-      <button type="button" className="btn btn-success" onClick={()=> saveTime()}>Save Time</button>
-      <button type="button" className="btn btn-danger" onClick={()=> clearStorage()}>Clear Time</button>
+      {isPaused ? (
+        <button
+          type="button"
+          className="btn btn-danger"
+          onClick={() => clearLocalStorage()}
+        >
+          Clear Clock
+        </button>
+      ) : (
+        <button
+          type="button"
+          className="btn btn-success"
+          onClick={() => saveToLocalStorage()}
+        >
+          Save Time
+        </button>
+      )}
     </>
   );
 };

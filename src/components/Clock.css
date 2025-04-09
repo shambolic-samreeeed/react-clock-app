@@ -1,13 +1,17 @@
-
+body{
+  background-color: black;
+}
 .clock-face{
   position: relative;
   height: 500px;
   width: 500px;
   border-radius: 50%;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 90px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  background-color: #0E1729;
+  border: 3px solid #464D5B;
 }
 
 .clock-pin{
@@ -25,9 +29,10 @@
 
 .hour{
   position:absolute;
-  font-size: 50px;
+  font-size: 300%;
+  font-weight: 110;
   transform: translate(-50%, -50%);
-  color: black;
+  color: white;
 }
 
 .twelve{
@@ -94,7 +99,8 @@
   position: absolute;
   width: 130px;
   height: 10px;
-  background-color: black;
+  background-color: #C8CBD0;
+  border-radius: 20px;
   left: 50%;
   top: 50%;
   transform-origin: 0% 50%;
@@ -103,8 +109,9 @@
 .minute-hand{
   position: absolute;
   height: 6px;
-  width: 180px;
-  background-color: black;
+  width: 200px;
+  background-color: #C8CBD0;
+  border-radius: 20px;
   left: 50%;
   top: 50%;
   transform-origin: 0% 50%;
@@ -113,7 +120,7 @@
 .second-hand{
   position: absolute;
   height: 2px;
-  width: 200px;
+  width: 240px;
   background-color: red;
   left: 50%;
   top: 50%;

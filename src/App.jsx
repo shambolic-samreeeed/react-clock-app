@@ -1,10 +1,10 @@
 import React from 'react'
-import Clock from './components/Clock'
+import HomePage from './pages/HomePage'
 
 const App = () => {
   return (
     <div>
-      <Clock className="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"/>
+      <HomePage/>
     </div>
   )
 }

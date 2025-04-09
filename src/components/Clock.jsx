@@ -87,7 +87,7 @@ const Clock = () => {
         ></div>
       </div>
       
-    {/* Using ternary operator to show/hide buttons according to need */}
+    {/* Using ternary operator to show/hide buttons based on isPaused value. */}
       {isPaused ? (
         <Button onClick={clearLocalStorage} buttonType={"btn btn-danger"} buttonText={"Clear Time"}></Button> 
       ) : (
